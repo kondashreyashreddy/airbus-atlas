@@ -12,3 +12,7 @@ A lightweight, static aircraft explorer. Open `index.html` in a modern browser; 
 ## Data notes
 
 Aircraft specifications are a reference summary based on Airbus commercial-aircraft information. Operator chips are a curated, non-exhaustive snapshot dated 4 October 2026; each family panel links to a public operator reference. Airline fleet assignments change, so verify with the airline before relying on an operator listing. The schematics are illustrative, not official engineering drawings or to scale.
+
+## Subnote
+
+This program is created on Visual Studio Code using Artificial Intelligence.
