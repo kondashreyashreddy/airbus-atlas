@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#071625">
+    <meta name="description" content="Explore Airbus passenger aircraft with technical-style schematics, dimensions, facts, and operator snapshots.">
+    <title>Airbus Atlas — Aircraft Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="#" aria-label="Airbus Atlas home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><path d="M4 23.5 15.8 4l2.8 8.1L28 14 4 23.5Z"/><path d="m14.4 17.2 2.1 6.4-8.7 3.1 6.6-9.5Z"/></svg>
+          </span>
+          <span class="brand-name">AIRBUS<span>ATLAS</span></span>
+        </a>
+
+        <div class="sidebar-section-label">EXPLORE</div>
+        <button class="nav-link active" type="button">
+          <span class="nav-icon" aria-hidden="true">⌗</span>
+          <span>Aircraft library</span>
+        </button>
+        <div class="sidebar-note">
+          <div class="note-icon" aria-hidden="true">◎</div>
+          <strong>Flight deck view</strong>
+          <p>A closer look at the aircraft shaping the skies.</p>
+        </div>
+        <div class="sidebar-bottom">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>REFERENCE EDITION <b>01</b></span>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="breadcrumbs"><span>LIBRARY</span><span class="crumb-slash">/</span><strong>AIRCRAFT</strong></div>
+          <div class="topbar-right">
+            <span class="live-label"><i aria-hidden="true"></i> AIRCRAFT REFERENCE</span>
+            <span class="topbar-divider"></span>
+            <span class="edition-label">2026 EDITION</span>
+          </div>
+        </header>
+
+        <div class="page-content">
+          <section class="page-heading">
+            <div>
+              <p class="eyebrow">AIRCRAFT LIBRARY <span>—</span> 01 / 05 FAMILIES</p>
+              <h1>Built to <span>take flight.</span></h1>
+              <p class="heading-description">Explore the engineering behind the Airbus passenger fleet.</p>
+            </div>
+            <label class="aircraft-picker">
+              <span class="picker-label">SELECT AIRCRAFT</span>
+              <span class="select-wrap">
+                <select id="aircraft-select" aria-label="Select an Airbus aircraft"></select>
+                <span class="select-chevron" aria-hidden="true">⌄</span>
+              </span>
+            </label>
+          </section>
+
+          <section class="workspace" aria-label="Aircraft explorer">
+            <section class="blueprint-card" aria-labelledby="aircraft-title">
+              <div class="blueprint-header">
+                <div class="aircraft-identity">
+                  <span class="family-pill" id="family-pill">A350 FAMILY</span>
+                  <h2 id="aircraft-title">A350-900</h2>
+                  <p id="aircraft-subtitle">Long-range widebody · Twin-engine</p>
+                </div>
+                <div class="drawing-meta">
+                  <span><i aria-hidden="true"></i> SCHEMATIC VIEW</span>
+                  <span class="meta-separator">·</span>
+                  <span>NOT TO SCALE</span>
+                </div>
+              </div>
+
+              <div class="blueprint-stage">
+                <div class="stage-corner stage-corner-tl">ATLAS / <span id="drawing-code">A350-900</span></div>
+                <div class="stage-corner stage-corner-tr">TOP VIEW <span>01</span></div>
+                <div class="stage-corner stage-corner-bl">DIMENSIONAL REFERENCE <span>·</span> M</div>
+                <div class="stage-corner stage-corner-br">FIG. <span id="figure-number">01</span></div>
+                <svg id="aircraft-drawing" class="aircraft-drawing" viewBox="0 0 900 700" role="img" aria-label="Illustrative top-view schematic of the selected aircraft"></svg>
+                <div class="drawing-caption">ILLUSTRATIVE AIRFRAME OUTLINE <span>·</span> PUBLIC SPECIFICATIONS</div>
+              </div>
+
+              <div class="blueprint-footer">
+                <span><i class="footer-marker" aria-hidden="true"></i> AIRBUS COMMERCIAL AIRCRAFT</span>
+                <span class="footer-source">REFERENCE SNAPSHOT <span>·</span> 04 OCT 2026</span>
+              </div>
+            </section>
+
+            <aside class="details-column" aria-label="Aircraft details and display settings">
+              <section class="settings-card">
+                <div class="card-heading">
+                  <span class="heading-icon" aria-hidden="true">☷</span>
+                  <h3>Display settings</h3>
+                  <span class="settings-count">03</span>
+                </div>
+                <div class="theme-setting">
+                  <div>
+                    <span class="setting-name">Appearance</span>
+                    <span class="setting-hint">Choose your workspace</span>
+                  </div>
+                  <div class="theme-switch" role="group" aria-label="Appearance">
+                    <button type="button" class="theme-option selected" data-theme="dark" aria-pressed="true" aria-label="Dark mode">◐</button>
+                    <button type="button" class="theme-option" data-theme="light" aria-pressed="false" aria-label="Light mode">☼</button>
+                  </div>
+                </div>
+                <div class="setting-row">
+                  <div class="setting-copy"><span class="setting-name">Measurements</span><span class="setting-hint">Show dimension lines</span></div>
+                  <button class="toggle" type="button" role="switch" aria-checked="true" data-setting="measurements" aria-label="Show measurements"><span></span></button>
+                </div>
+                <div class="setting-row">
+                  <div class="setting-copy"><span class="setting-name">Aircraft facts</span><span class="setting-hint">Show key specifications</span></div>
+                  <button class="toggle" type="button" role="switch" aria-checked="true" data-setting="facts" aria-label="Show aircraft facts"><span></span></button>
+                </div>
+                <div class="setting-row">
+                  <div class="setting-copy"><span class="setting-name">Airline operators</span><span class="setting-hint">Show known operators</span></div>
+                  <button class="toggle" type="button" role="switch" aria-checked="true" data-setting="airlines" aria-label="Show airline operators"><span></span></button>
+                </div>
+              </section>
+
+              <section class="details-card facts-panel" id="facts-panel" aria-labelledby="facts-title">
+                <div class="card-heading section-heading">
+                  <div><span class="eyebrow">AIRFRAME PROFILE</span><h3 id="facts-title">At a glance</h3></div>
+                  <span class="card-index">01</span>
+                </div>
+                <div class="dimension-grid" id="dimension-grid"></div>
+                <div class="spec-list">
+                  <div class="spec-row"><span>Typical seating</span><strong id="seats-value"></strong></div>
+                  <div class="spec-row"><span>Maximum range</span><strong id="range-value"></strong></div>
+                  <div class="spec-row"><span>First delivery</span><strong id="delivery-value"></strong></div>
+                </div>
+                <p class="spec-footnote">Typical configurations vary by airline and cabin layout.</p>
+              </section>
+
+              <section class="details-card airlines-panel" id="airlines-panel" aria-labelledby="airlines-title">
+                <div class="card-heading section-heading">
+                  <div><span class="eyebrow">IN SERVICE WITH</span><h3 id="airlines-title">Airline operators</h3></div>
+                  <span class="operator-count" id="operator-count">—</span>
+                </div>
+                <div class="operator-list" id="operator-list"></div>
+                <div class="operator-footnote"><span aria-hidden="true">↗</span> <span id="operator-source-note">Curated public fleet snapshot · not exhaustive</span> <a id="operator-source-link" href="https://en.wikipedia.org/wiki/List_of_Airbus_A320_family_operators" target="_blank" rel="noreferrer">View operator reference</a></div>
+              </section>
+            </aside>
+          </section>
+
+          <footer class="page-footer">
+            <span>ATLAS <span class="footer-dot">•</span> AN INDEPENDENT AIRCRAFT REFERENCE</span>
+            <span class="source-link-wrap">SPECIFICATIONS: <a href="https://www.airbus.com/en/products-services/commercial-aircraft/passenger-aircraft" target="_blank" rel="noreferrer">AIRBUS PASSENGER AIRCRAFT</a> <span class="footer-dot">·</span> OPERATOR LIST IS A CURATED, NON-EXHAUSTIVE SNAPSHOT</span>
+          </footer>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

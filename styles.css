@@ -1,0 +1,428 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  color-scheme: dark;
+  --bg: #071522;
+  --sidebar: #091a29;
+  --surface: #0d2031;
+  --surface-raised: #102638;
+  --surface-soft: #0b1d2d;
+  --line: rgba(155, 186, 211, .13);
+  --line-bright: rgba(155, 186, 211, .23);
+  --text: #edf5fb;
+  --muted: #869bab;
+  --subtle: #5f7687;
+  --accent: #69d9e7;
+  --accent-strong: #a5eff5;
+  --blueprint: #0a2031;
+  --blue-grid: rgba(104, 193, 211, .085);
+  --blue-lines: #90e6ed;
+  --shadow: 0 18px 55px rgba(0, 0, 0, .13);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+button, select { font: inherit; }
+button { color: inherit; }
+a { color: inherit; }
+
+.app-shell { min-height: 100vh; }
+
+.sidebar {
+  width: 230px;
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 3;
+  padding: 27px 17px 19px;
+  display: flex;
+  flex-direction: column;
+  background: var(--sidebar);
+  border-right: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 9px;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  color: #071b2a;
+  border-radius: 11px;
+  background: linear-gradient(145deg, #8fe7ec, #53bdcc);
+  box-shadow: 0 6px 18px rgba(78, 203, 217, .18);
+}
+
+.brand-mark svg { width: 25px; fill: currentColor; }
+.brand-name { font: 800 14px/1 'Manrope', sans-serif; letter-spacing: .11em; }
+.brand-name span { color: var(--accent); margin-left: 5px; }
+.sidebar-section-label, .picker-label, .eyebrow, .breadcrumbs, .drawing-meta,
+.stage-corner, .drawing-caption, .blueprint-footer, .sidebar-bottom, .live-label,
+.edition-label, .page-footer {
+  font-family: 'DM Mono', Consolas, monospace;
+  letter-spacing: .1em;
+}
+
+.sidebar-section-label {
+  margin: 55px 10px 12px;
+  color: var(--subtle);
+  font-size: 10px;
+}
+
+.nav-link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 11px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+  text-align: left;
+  cursor: pointer;
+}
+
+.nav-link.active {
+  color: var(--accent-strong);
+  background: rgba(102, 212, 226, .09);
+  border-color: rgba(102, 212, 226, .1);
+}
+
+.nav-icon { font-size: 20px; line-height: 15px; }
+.sidebar-note {
+  margin: 39px 3px 0;
+  padding: 15px 13px 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255,255,255,.018);
+}
+
+.note-icon { margin-bottom: 13px; color: var(--accent); font-size: 21px; }
+.sidebar-note strong { display: block; font-size: 12px; font-weight: 600; }
+.sidebar-note p { margin: 7px 0 0; color: var(--muted); font-size: 11px; line-height: 1.65; }
+.sidebar-bottom { margin-top: auto; display: flex; align-items: center; gap: 8px; color: var(--subtle); font-size: 9px; }
+.sidebar-bottom b { color: var(--muted); font-weight: 400; }
+.status-dot, .live-label i, .drawing-meta i, .footer-marker {
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 9px rgba(105,217,231,.6);
+}
+
+.main-content { min-height: 100vh; margin-left: 230px; }
+.topbar {
+  height: 62px;
+  padding: 0 4.1%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  background: rgba(8, 24, 37, .62);
+}
+
+.breadcrumbs { display: flex; align-items: center; gap: 11px; color: var(--subtle); font-size: 9px; }
+.breadcrumbs strong { color: var(--muted); font-weight: 400; }
+.crumb-slash { color: #3f596b; }
+.topbar-right { display: flex; align-items: center; gap: 14px; }
+.live-label { display: flex; align-items: center; gap: 7px; color: var(--muted); font-size: 9px; }
+.live-label i { width: 5px; height: 5px; }
+.topbar-divider { width: 1px; height: 14px; background: var(--line-bright); }
+.edition-label { color: var(--subtle); font-size: 9px; }
+.page-content { width: min(1500px, 100%); margin: 0 auto; padding: 34px 4.1% 18px; }
+
+.page-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.eyebrow { margin: 0; color: var(--accent); font-size: 9px; }
+.eyebrow span { padding: 0 3px; color: var(--subtle); }
+h1, h2, h3, p { margin-top: 0; }
+h1 {
+  margin: 10px 0 5px;
+  font: 600 clamp(26px, 3vw, 35px)/1.2 'Manrope', sans-serif;
+  letter-spacing: -.045em;
+}
+h1 span { color: var(--accent); font-weight: 500; }
+.heading-description { margin: 0; color: var(--muted); font-size: 12px; }
+.aircraft-picker { width: 220px; flex: 0 0 220px; }
+.picker-label { display: block; margin-bottom: 7px; color: var(--subtle); font-size: 9px; }
+.select-wrap { position: relative; display: block; }
+.select-wrap select {
+  width: 100%;
+  height: 41px;
+  appearance: none;
+  padding: 0 38px 0 13px;
+  border: 1px solid var(--line-bright);
+  border-radius: 6px;
+  outline: none;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 12px;
+  cursor: pointer;
+}
+.select-wrap select:focus-visible { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(105,217,231,.12); }
+.select-chevron { position: absolute; top: 9px; right: 13px; color: var(--accent); font-size: 18px; pointer-events: none; }
+
+.workspace { display: grid; grid-template-columns: minmax(0, 1fr) 294px; gap: 16px; align-items: start; }
+.blueprint-card, .settings-card, .details-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.blueprint-card { min-width: 0; overflow: hidden; }
+.blueprint-header {
+  min-height: 88px;
+  padding: 17px 21px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.family-pill {
+  display: inline-block;
+  margin-bottom: 5px;
+  padding: 4px 7px;
+  border: 1px solid rgba(105,217,231,.22);
+  border-radius: 3px;
+  color: var(--accent);
+  font: 9px 'DM Mono', monospace;
+  letter-spacing: .08em;
+}
+.aircraft-identity h2 { margin: 0; font: 600 24px/1.05 'Manrope', sans-serif; letter-spacing: -.035em; }
+.aircraft-identity p { margin: 5px 0 0; color: var(--muted); font-size: 11px; }
+.drawing-meta { display: flex; align-items: center; gap: 8px; white-space: nowrap; color: var(--subtle); font-size: 8px; }
+.drawing-meta i { width: 5px; height: 5px; }
+.meta-separator { color: var(--accent); }
+
+.blueprint-stage {
+  position: relative;
+  min-height: 490px;
+  overflow: hidden;
+  background-color: var(--blueprint);
+  background-image:
+    linear-gradient(var(--blue-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--blue-grid) 1px, transparent 1px),
+    linear-gradient(rgba(104,193,211,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(104,193,211,.025) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.blueprint-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 53% 45%, rgba(32,139,160,.11), transparent 57%);
+}
+
+.aircraft-drawing { position: relative; z-index: 1; width: 100%; height: 490px; display: block; }
+.aircraft-drawing .airframe { fill: rgba(94, 209, 225, .09); stroke: var(--blue-lines); stroke-width: 1.25; vector-effect: non-scaling-stroke; }
+.aircraft-drawing .detail-line { fill: none; stroke: rgba(144,230,237,.48); stroke-width: .7; vector-effect: non-scaling-stroke; }
+.aircraft-drawing .engine { fill: rgba(92,204,223,.16); stroke: rgba(144,230,237,.83); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.aircraft-drawing .centerline { stroke: rgba(144,230,237,.27); stroke-width: .7; stroke-dasharray: 5 6; vector-effect: non-scaling-stroke; }
+.aircraft-drawing .dimension-line { stroke: var(--blue-lines); stroke-width: .8; vector-effect: non-scaling-stroke; }
+.aircraft-drawing .dimension-extension { stroke: rgba(144,230,237,.4); stroke-width: .7; stroke-dasharray: 3 4; vector-effect: non-scaling-stroke; }
+.aircraft-drawing .dimension-label { fill: var(--blue-lines); font: 10px 'DM Mono', monospace; letter-spacing: 1.1px; }
+.aircraft-drawing .small-label { fill: rgba(173,235,240,.7); font: 7px 'DM Mono', monospace; letter-spacing: 1px; }
+.aircraft-drawing .dimension-group.hidden { display: none; }
+.stage-corner { position: absolute; z-index: 2; color: rgba(169,218,225,.62); font-size: 8px; }
+.stage-corner span { color: var(--accent); }
+.stage-corner-tl { top: 15px; left: 16px; }
+.stage-corner-tr { top: 15px; right: 16px; }
+.stage-corner-bl { bottom: 28px; left: 16px; }
+.stage-corner-br { bottom: 28px; right: 16px; }
+.drawing-caption { position: absolute; z-index: 2; bottom: 12px; left: 50%; transform: translateX(-50%); width: max-content; max-width: 80%; color: rgba(169,218,225,.42); font-size: 7px; text-align: center; }
+.drawing-caption span { padding: 0 4px; color: var(--accent); }
+.blueprint-footer { min-height: 37px; padding: 0 19px; display: flex; align-items: center; justify-content: space-between; color: var(--subtle); font-size: 8px; }
+.blueprint-footer > span:first-child { display: flex; align-items: center; gap: 8px; }
+.footer-marker { width: 5px; height: 5px; }
+.footer-source span { color: var(--accent); }
+
+.details-column { display: grid; gap: 13px; }
+.settings-card, .details-card { padding: 16px; }
+.card-heading { display: flex; align-items: center; gap: 9px; }
+.card-heading h3 { margin: 0; font: 600 13px 'Manrope', sans-serif; letter-spacing: -.01em; }
+.heading-icon { color: var(--accent); font-size: 17px; }
+.settings-count, .card-index, .operator-count { margin-left: auto; color: var(--subtle); font: 9px 'DM Mono', monospace; }
+.theme-setting, .setting-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.theme-setting { padding: 16px 0 14px; border-bottom: 1px solid var(--line); }
+.setting-row { min-height: 53px; border-bottom: 1px solid var(--line); }
+.setting-row:last-child { min-height: 49px; border-bottom: 0; }
+.setting-copy > span, .theme-setting > div:first-child > span { display: block; }
+.setting-name { color: var(--text); font-size: 11px; font-weight: 500; }
+.setting-hint { margin-top: 3px; color: var(--subtle); font-size: 9px; }
+.theme-switch { display: flex; padding: 3px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface-soft); }
+.theme-option {
+  width: 25px; height: 23px; display: grid; place-items: center;
+  padding: 0; border: 0; border-radius: 3px; background: transparent;
+  color: var(--subtle); font-size: 13px; cursor: pointer;
+}
+.theme-option.selected { background: var(--surface-raised); color: var(--accent); box-shadow: 0 1px 4px rgba(0,0,0,.15); }
+.toggle {
+  width: 31px; height: 18px; flex: 0 0 31px; padding: 2px;
+  border: 0; border-radius: 11px; background: #344858; cursor: pointer;
+  transition: background .18s ease;
+}
+.toggle span { width: 14px; height: 14px; display: block; border-radius: 50%; background: #b0bec8; transition: transform .18s ease, background .18s ease; }
+.toggle[aria-checked="true"] { background: rgba(80, 184, 198, .46); }
+.toggle[aria-checked="true"] span { transform: translateX(13px); background: var(--accent-strong); }
+.toggle:focus-visible, .theme-option:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.section-heading { justify-content: space-between; align-items: start; margin-bottom: 14px; }
+.section-heading .eyebrow { margin-bottom: 5px; font-size: 8px; }
+.section-heading h3 { font-size: 14px; }
+.card-index { padding-top: 2px; }
+.dimension-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; padding: 11px 0 13px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.dimension-cell { min-width: 0; }
+.dimension-value { display: block; color: var(--accent-strong); font: 500 15px 'Manrope', sans-serif; letter-spacing: -.04em; white-space: nowrap; }
+.dimension-unit { padding-left: 2px; color: var(--muted); font: 8px 'DM Mono', monospace; }
+.dimension-label { display: block; margin-top: 5px; color: var(--subtle); font: 8px 'DM Mono', monospace; letter-spacing: .06em; text-transform: uppercase; }
+.spec-list { padding-top: 6px; }
+.spec-row { min-height: 29px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.spec-row span { color: var(--muted); font-size: 9px; }
+.spec-row strong { color: var(--text); font-size: 9px; font-weight: 500; text-align: right; }
+.spec-footnote { margin: 8px 0 0; color: var(--subtle); font-size: 8px; line-height: 1.5; }
+.operator-count { padding: 4px 6px; border: 1px solid var(--line); border-radius: 3px; color: var(--accent); }
+.operator-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.operator-chip { padding: 6px 8px; border: 1px solid var(--line-bright); border-radius: 4px; background: rgba(255,255,255,.018); color: var(--muted); font-size: 9px; }
+.operator-footnote { margin-top: 13px; color: var(--subtle); font-size: 8px; line-height: 1.6; }
+.operator-footnote > span:first-child { margin-right: 4px; color: var(--accent); }
+.operator-footnote a { margin-left: 4px; color: var(--muted); text-underline-offset: 2px; }
+.operator-footnote a:hover { color: var(--accent); }
+.no-operators { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.6; }
+.page-footer { min-height: 48px; display: flex; align-items: end; justify-content: space-between; gap: 10px; color: var(--subtle); font-size: 7px; }
+.footer-dot { padding: 0 4px; color: var(--accent); }
+.page-footer a { color: var(--muted); text-underline-offset: 2px; }
+.page-footer a:hover { color: var(--accent); }
+.source-link-wrap { text-align: right; }
+.hidden-panel { display: none !important; }
+
+body.light {
+  color-scheme: light;
+  --bg: #edf3f6;
+  --sidebar: #f8fbfc;
+  --surface: #ffffff;
+  --surface-raised: #f0f6f8;
+  --surface-soft: #f5f9fa;
+  --line: rgba(34, 72, 91, .12);
+  --line-bright: rgba(34, 72, 91, .2);
+  --text: #193345;
+  --muted: #647d8c;
+  --subtle: #8b9da7;
+  --accent: #168fa2;
+  --accent-strong: #137f91;
+  --blueprint: #e8f4f6;
+  --blue-grid: rgba(28, 121, 139, .10);
+  --blue-lines: #237f91;
+  --shadow: 0 15px 40px rgba(27, 69, 87, .06);
+}
+
+body.light .topbar { background: rgba(255,255,255,.72); }
+body.light .brand-mark { color: #fff; background: linear-gradient(145deg,#30a8b8,#17899c); }
+body.light .toggle { background: #c9d5db; }
+body.light .toggle span { background: #fff; }
+body.light .toggle[aria-checked="true"] { background: rgba(22,143,162,.56); }
+body.light .toggle[aria-checked="true"] span { background: #fff; }
+body.light .aircraft-drawing .airframe { fill: rgba(35,127,145,.09); }
+body.light .aircraft-drawing .detail-line { stroke: rgba(35,127,145,.48); }
+body.light .aircraft-drawing .engine { fill: rgba(35,127,145,.11); stroke: rgba(35,127,145,.83); }
+body.light .aircraft-drawing .centerline { stroke: rgba(35,127,145,.3); }
+body.light .aircraft-drawing .dimension-extension { stroke: rgba(35,127,145,.45); }
+body.light .aircraft-drawing .small-label { fill: rgba(35,127,145,.75); }
+body.light .stage-corner { color: rgba(35,100,113,.7); }
+body.light .drawing-caption { color: rgba(35,100,113,.58); }
+body.light .operator-chip { background: #f7fafb; }
+
+@media (min-width: 1500px) {
+  .workspace { grid-template-columns: minmax(0, 1fr) 320px; }
+  .blueprint-stage, .aircraft-drawing { min-height: 560px; height: 560px; }
+}
+
+@media (max-width: 1100px) {
+  .sidebar { width: 190px; }
+  .main-content { margin-left: 190px; }
+  .workspace { grid-template-columns: minmax(0, 1fr) 265px; gap: 12px; }
+  .page-content { padding-right: 3%; padding-left: 3%; }
+  .blueprint-stage, .aircraft-drawing { min-height: 430px; height: 430px; }
+}
+
+@media (max-width: 820px) {
+  .sidebar { width: 64px; align-items: center; padding: 20px 8px 15px; }
+  .brand { padding: 0; }
+  .brand-mark { width: 37px; height: 37px; }
+  .brand-name, .sidebar-section-label, .nav-link span:last-child, .sidebar-note, .sidebar-bottom { display: none; }
+  .sidebar-section-label { margin: 0; }
+  .nav-link { width: 42px; height: 42px; justify-content: center; margin-top: 42px; padding: 0; }
+  .main-content { margin-left: 64px; }
+  .workspace { grid-template-columns: minmax(0, 1fr); }
+  .details-column { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .settings-card { grid-column: 1 / -1; }
+  .settings-card .card-heading { margin-bottom: 3px; }
+  .settings-card { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 15px; }
+  .settings-card > .card-heading { grid-column: 1 / -1; }
+  .settings-card .theme-setting { border-bottom: 0; }
+  .settings-card .setting-row { border-bottom: 0; }
+  .settings-card .setting-row:last-child { min-height: 53px; }
+  .page-content { padding-top: 28px; }
+}
+
+@media (max-width: 560px) {
+  .topbar { height: 51px; padding: 0 15px; }
+  .topbar-right { gap: 8px; }
+  .live-label { font-size: 8px; }
+  .edition-label { display: none; }
+  .topbar-divider { display: none; }
+  .page-content { padding: 24px 13px 15px; }
+  .page-heading { align-items: start; flex-direction: column; gap: 17px; margin-bottom: 19px; }
+  h1 { font-size: 29px; }
+  .aircraft-picker { width: 100%; flex-basis: auto; }
+  .workspace { gap: 11px; }
+  .blueprint-header { min-height: 83px; padding: 14px; }
+  .aircraft-identity h2 { font-size: 22px; }
+  .drawing-meta { flex-direction: column; align-items: end; gap: 4px; font-size: 7px; }
+  .drawing-meta .meta-separator { display: none; }
+  .blueprint-stage, .aircraft-drawing { height: 360px; min-height: 360px; }
+  .stage-corner { font-size: 7px; }
+  .drawing-caption { font-size: 6px; }
+  .blueprint-footer { padding: 0 12px; font-size: 7px; }
+  .details-column { grid-template-columns: 1fr; }
+  .settings-card { grid-template-columns: 1fr; }
+  .settings-card > .card-heading { grid-column: 1; margin-bottom: 0; }
+  .settings-card .theme-setting { border-bottom: 1px solid var(--line); }
+  .settings-card .setting-row { border-bottom: 1px solid var(--line); }
+  .settings-card .setting-row:last-child { border-bottom: 0; }
+  .page-footer { align-items: start; flex-direction: column; justify-content: center; padding: 12px 0 3px; line-height: 1.8; }
+  .source-link-wrap { text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}
