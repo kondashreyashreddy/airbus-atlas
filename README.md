@@ -16,3 +16,6 @@ Aircraft specifications are a reference summary based on Airbus commercial-aircr
 ## Subnote
 
 This program is created on Visual Studio Code using Artificial Intelligence.
+
+## Disclaimer
+I am not affiliated with Airbus nor Virtual Studio Code. This project is intended to be a side project and as such is not affiliated with any of the above organizations.
